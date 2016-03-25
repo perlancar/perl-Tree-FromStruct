@@ -38,7 +38,7 @@ In your tree node class F<My/Person.pm>:
 
  sub children {
      my $self = shift;
-     $self->{_children} = [@_] if $@;
+     $self->{_children} = $_[0] if $@;
      $self->{_children};
  }
 
@@ -80,60 +80,17 @@ the children nodes together:
 This module provides a convenience function to build a tree of objects in a
 single command. It connect the parent and children nodes for you.
 
+The class can be any class that provides C<parent> and C<children> methods. See
+L<Role::TinyCommons::Tree::Node> for more details.
+
 
 =head1 FUNCTIONS
 
 =head2 build_tree_from_struct($struct) => obj
 
-Construct a tree object from a data structure C<$struct>. Structure must be a
-hash. There must be a special key named C<_class> to set which node class to
-use. There can also be some other special keys: C<_children> (an array of
-structure to build children), C<_constructor> (string, constructor name if not
-C<new>). The other keys will be fed to the node constructor.
-
-Class must at least provide the C<parent> and C<children> attribute methods to
-get and set the parent and children (you can also consume the
-L<Role::TinyCommons::Tree::Node> to enforce this).
-
-Example:
-
- my $family_tree = build_tree_from_struct({
-     _class => 'My::Person', name => 'Andi', age => 60, _children => [
-         {name => 'Budi', age => 30},
-         {_class => 'My::MarriedPerson', name => 'Cinta', _children => [
-              {class => 'My::KidPerson', name => 'Deni'},
-              {class => 'My::KidPerson', name => 'Eno'},
-          ]},
-     ]});
-
-Here's how the function builds the tree. function will first construct the first
-(root) node with:
-
- my $root = My::Person->new(name => 'Andi', age => 60);
-
-then it will set the children:
-
- my $child1 = My::Person->new(name => 'Budi', age => 30);
- $child1->parent($root);
- my $child2 = My::MarriedPerson->new(name => 'Cinta');
- $child1->parent($root);
-
-and connect them to the root:
-
- $root->children($child1, $child2);
-
-It then proceeds to the next level:
-
- my $grandchidl1 = My::KidPerson->new(name => 'Deni');
- $grandchild1->parent($child2);
- my $grandchidl2 = My::KidPerson->new(name => 'Eno');
- $grandchild2->parent($child2);
-
-and connect the nodes to their parent:
-
- $child2->children($grandchild1, $grandchild2);
-
-Finally it will return the root node C<$root>.
+This is basically L<Role::TinyCommons::Tree::FromStruct>'s C<new_from_struct>
+presented as a function. See the role's documentation for more details on what
+you can put in C<$struct>.
 
 
 =head1 SEE ALSO

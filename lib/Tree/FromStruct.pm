@@ -70,7 +70,7 @@ the children nodes together:
  my $child1 = My::Class->new(...);
  my $child2 = My::Class->new(...);
 
- $root->children($child1, $child2);
+ $root->children([$child1, $child2]);
  $child1->parent($root);
  $child2->parent($root);
 

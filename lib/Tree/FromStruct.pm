@@ -97,3 +97,6 @@ you can put in C<$struct>.
 
 L<Role::TinyCommons::Tree::FromStruct> if you want to use this functionality via
 consuming a role.
+
+Other ways to create tree: L<Tree::FromText>, L<Tree::FromTextLines>,
+L<Tree::Create::Callback>, L<Tree::Create::Size>.

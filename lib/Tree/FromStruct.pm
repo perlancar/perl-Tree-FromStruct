@@ -66,15 +66,15 @@ In your code to build a tree:
 Building a tree manually can be tedious: you have to connect the parent and
 the children nodes together:
 
- my $root = My::Class->new(...);
- my $child1 = My::Class->new(...);
- my $child2 = My::Class->new(...);
+ my $root = My::TreeNode->new(...);
+ my $child1 = My::TreeNode->new(...);
+ my $child2 = My::TreeNode->new(...);
 
  $root->children([$child1, $child2]);
  $child1->parent($root);
  $child2->parent($root);
 
- my $grandchild1 = My::Class->new(...);
+ my $grandchild1 = My::TreeNode->new(...);
  ...
 
 This module provides a convenience function to build a tree of objects in a

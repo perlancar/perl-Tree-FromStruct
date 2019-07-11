@@ -1,11 +1,11 @@
-0.03    2016-03-29 (PERLANCAR)
+0.03    2016-03-29  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- [doc] Mention other modules that create tree.
 
 
-0.02    2016-03-26 (PERLANCAR)
+0.02    2016-03-26  Released-By: PERLANCAR
 
 	- No functional changes.
 
@@ -13,6 +13,6 @@
 	  Role::TinyCommons::Tree::FromStruct instead.
 
 
-0.01    2016-03-23 (PERLANCAR)
+0.01    2016-03-23  Released-By: PERLANCAR
 
         - First release.
